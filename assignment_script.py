@@ -11,7 +11,6 @@ display(data)
 data['retention_1'] = data['retention_1'].astype(int)
 data['retention_7'] = data['retention_7'].astype(int)
 
-# Bayesian Modeling for 1-Day Retention
 # Separation data for control and treatment groups
 control_1day = data[data['version'] == 'gate_30']['retention_1']
 treatment_1day = data[data['version'] == 'gate_40']['retention_1']
@@ -36,7 +35,7 @@ with pm.Model() as model_1day:
 summary_1day = az.summary(trace_1day, hdi_prob=0.95)
 print(summary_1day)
 
-# Bayesian Modeling for 7-Day Retention
+# Control and treatment definition
 control_7day = data[data['version'] == 'gate_30']['retention_7']
 treatment_7day = data[data['version'] == 'gate_40']['retention_7']
 
